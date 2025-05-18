@@ -396,6 +396,7 @@
 				INFOPLIST_FILE = WattTimeWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WattTimeWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -423,6 +424,7 @@
 				INFOPLIST_FILE = WattTimeWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WattTimeWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

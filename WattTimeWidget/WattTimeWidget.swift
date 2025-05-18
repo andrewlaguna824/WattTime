@@ -10,11 +10,11 @@ import SwiftUI
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), emoji: "😀")
+        SimpleEntry(date: Date(), rateInfo: EnergyData.currentRateInfo())
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), emoji: "😀")
+        let entry = SimpleEntry(date: Date(), rateInfo: EnergyData.currentRateInfo())
         completion(entry)
     }
 
@@ -25,7 +25,7 @@ struct Provider: TimelineProvider {
         let currentDate = Date()
         for hourOffset in 0 ..< 5 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, emoji: "😀")
+            let entry = SimpleEntry(date: entryDate, rateInfo: EnergyData.currentRateInfo())
             entries.append(entry)
         }
 
@@ -40,20 +40,14 @@ struct Provider: TimelineProvider {
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let emoji: String
+    let rateInfo: (rate: RateType, period: RatePeriod, nextPeriod: RatePeriod)
 }
 
 struct WattTimeWidgetEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
-        VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
-
-            Text("Emoji:")
-            Text(entry.emoji)
-        }
+        RateInfoView(rateInfo: entry.rateInfo, style: .compact)
     }
 }
 
@@ -71,14 +65,14 @@ struct WattTimeWidget: Widget {
                     .background()
             }
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("WattTime")
+        .description("Shows current electricity rate information.")
     }
 }
 
 #Preview(as: .systemSmall) {
     WattTimeWidget()
 } timeline: {
-    SimpleEntry(date: .now, emoji: "😀")
-    SimpleEntry(date: .now, emoji: "🤩")
+    SimpleEntry(date: .now, rateInfo: EnergyData.currentRateInfo())
+    SimpleEntry(date: .now.addingTimeInterval(3600), rateInfo: EnergyData.currentRateInfo())
 }

@@ -49,7 +49,7 @@ struct RateType: Codable {
     }
     
     func formattedRate(for date: Date = Date()) -> String {
-        String(format: "%.2f¢", rate(for: date) * 100)
+        String(format: "%.0f¢", rate(for: date) * 100)
     }
     
     var isPeakRate: Bool {
@@ -149,7 +149,7 @@ struct EnergyData: Codable {
         return calendar.date(bySettingHour: nextPeriod.startHour, minute: 0, second: 0, of: date)!
     }
     
-    static func currentRateInfo(for date: Date = Date()) -> (rate: RateType, period: RatePeriod, nextChange: Date) {
+    static func currentRateInfo(for date: Date = Date()) -> (rate: RateType, period: RatePeriod, nextPeriod: RatePeriod) {
         let calendar = Calendar.current
         let isWeekend = calendar.isDateInWeekend(date)
         let month = calendar.component(.month, from: date)
@@ -165,7 +165,16 @@ struct EnergyData: Codable {
         let currentPeriod = rates.first { $0.contains(date) } ?? rates[0]
         let nextChange = nextRateChange(from: date)
         
-        return (currentPeriod.rateType, currentPeriod, nextChange)
+        // Find the next period
+        let nextPeriod: RatePeriod
+        if let nextPeriodIndex = rates.firstIndex(where: { $0.startHour > calendar.component(.hour, from: date) }) {
+            nextPeriod = rates[nextPeriodIndex]
+        } else {
+            // If no next period today, use first period of tomorrow
+            nextPeriod = rates[0]
+        }
+        
+        return (currentPeriod.rateType, currentPeriod, nextPeriod)
     }
     
     static func formattedNextRateChange(from date: Date = Date()) -> String {

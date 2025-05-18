@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct RateInfoView: View {
-    let rateInfo: (rate: RateType, period: RatePeriod, nextChange: Date)
+    let rateInfo: (rate: RateType, period: RatePeriod, nextPeriod: RatePeriod)
     let style: RateInfoStyle
     
     enum RateInfoStyle {
@@ -23,7 +23,7 @@ struct RateInfoView: View {
 }
 
 struct CompactRateView: View {
-    let rateInfo: (rate: RateType, period: RatePeriod, nextChange: Date)
+    let rateInfo: (rate: RateType, period: RatePeriod, nextPeriod: RatePeriod)
     
     var body: some View {
         VStack(spacing: 8) {
@@ -31,7 +31,7 @@ struct CompactRateView: View {
                 .font(.headline)
                 .foregroundColor(Color(rateInfo.rate.color))
             
-            Text(rateInfo.rate.formattedRate(for: rateInfo.nextChange))
+            Text(rateInfo.rate.formattedRate())
                 .font(.title2)
                 .bold()
             
@@ -39,7 +39,11 @@ struct CompactRateView: View {
                 .font(.caption)
                 .foregroundColor(.secondary)
             
-            Text("Next: \(EnergyData.formattedNextRateChange(from: rateInfo.nextChange))")
+            Text("Next: \(rateInfo.nextPeriod.rateType.name)")
+                .font(.caption2)
+                .foregroundColor(.secondary)
+            
+            Text(rateInfo.nextPeriod.formattedTimeRange)
                 .font(.caption2)
                 .foregroundColor(.secondary)
         }
@@ -48,7 +52,7 @@ struct CompactRateView: View {
 }
 
 struct DetailedRateView: View {
-    let rateInfo: (rate: RateType, period: RatePeriod, nextChange: Date)
+    let rateInfo: (rate: RateType, period: RatePeriod, nextPeriod: RatePeriod)
     
     var body: some View {
         HStack {
@@ -57,7 +61,7 @@ struct DetailedRateView: View {
                     .font(.headline)
                     .foregroundColor(Color(rateInfo.rate.color))
                 
-                Text(rateInfo.rate.formattedRate(for: rateInfo.nextChange))
+                Text(rateInfo.rate.formattedRate())
                     .font(.title)
                     .bold()
                 
@@ -69,13 +73,18 @@ struct DetailedRateView: View {
             Spacer()
             
             VStack(alignment: .trailing, spacing: 8) {
-                Text("Next Rate Change")
+                Text("Next Period")
                     .font(.caption)
                     .foregroundColor(.secondary)
                 
-                Text(EnergyData.formattedNextRateChange(from: rateInfo.nextChange))
+                Text(rateInfo.nextPeriod.rateType.name)
                     .font(.title3)
                     .bold()
+                    .foregroundColor(Color(rateInfo.nextPeriod.rateType.color))
+                
+                Text(rateInfo.nextPeriod.formattedTimeRange)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
                 
                 if rateInfo.rate.isPeakRate {
                     Text("Consider delaying usage")
@@ -93,7 +102,7 @@ struct DetailedRateView: View {
 }
 
 struct RateCardView: View {
-    let rateInfo: (rate: RateType, period: RatePeriod, nextChange: Date)
+    let rateInfo: (rate: RateType, period: RatePeriod, nextPeriod: RatePeriod)
     
     var body: some View {
         VStack(spacing: 16) {
@@ -102,7 +111,7 @@ struct RateCardView: View {
                     Text(rateInfo.rate.name)
                         .font(.headline)
                         .foregroundColor(Color(rateInfo.rate.color))
-                    Text(rateInfo.rate.formattedRate(for: rateInfo.nextChange))
+                    Text(rateInfo.rate.formattedRate())
                         .font(.title)
                         .bold()
                 }
@@ -125,7 +134,15 @@ struct RateCardView: View {
                 HStack {
                     Image(systemName: "arrow.clockwise")
                         .foregroundColor(.secondary)
-                    Text("Next change: \(EnergyData.formattedNextRateChange(from: rateInfo.nextChange))")
+                    Text("Next: \(rateInfo.nextPeriod.rateType.name)")
+                        .font(.subheadline)
+                        .foregroundColor(Color(rateInfo.nextPeriod.rateType.color))
+                }
+                
+                HStack {
+                    Image(systemName: "clock")
+                        .foregroundColor(.secondary)
+                    Text(rateInfo.nextPeriod.formattedTimeRange)
                         .font(.subheadline)
                 }
             }
