@@ -27,11 +27,11 @@ struct CompactRateView: View {
     
     var body: some View {
         VStack(spacing: 8) {
-            Text(rateInfo.rate.rawValue)
+            Text(rateInfo.rate.name)
                 .font(.headline)
                 .foregroundColor(Color(rateInfo.rate.color))
             
-            Text(rateInfo.rate.formattedRate)
+            Text(rateInfo.rate.formattedRate(for: rateInfo.nextChange))
                 .font(.title2)
                 .bold()
             
@@ -53,11 +53,11 @@ struct DetailedRateView: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 8) {
-                Text(rateInfo.rate.rawValue)
+                Text(rateInfo.rate.name)
                     .font(.headline)
                     .foregroundColor(Color(rateInfo.rate.color))
                 
-                Text(rateInfo.rate.formattedRate)
+                Text(rateInfo.rate.formattedRate(for: rateInfo.nextChange))
                     .font(.title)
                     .bold()
                 
@@ -99,10 +99,10 @@ struct RateCardView: View {
         VStack(spacing: 16) {
             HStack {
                 VStack(alignment: .leading) {
-                    Text(rateInfo.rate.rawValue)
+                    Text(rateInfo.rate.name)
                         .font(.headline)
                         .foregroundColor(Color(rateInfo.rate.color))
-                    Text(rateInfo.rate.formattedRate)
+                    Text(rateInfo.rate.formattedRate(for: rateInfo.nextChange))
                         .font(.title)
                         .bold()
                 }

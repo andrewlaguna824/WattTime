@@ -1,35 +1,59 @@
 import Foundation
+import SwiftUI
 
-enum RateType: String, Codable {
-    case superOffPeak = "Super Off-Peak"
-    case offPeak = "Off-Peak"
-    case midPeak = "Mid-Peak"
-    case onPeak = "On-Peak"
+struct RateType: Codable {
+    let name: String
+    let winterRate: Double
+    let summerRate: Double
     
-    var rate: Double {
-        switch self {
-        case .superOffPeak: return 0.35
-        case .offPeak: return 0.36
-        case .midPeak: return 0.48
-        case .onPeak: return 0.59
+    static let superOffPeak = RateType(
+        name: "Super Off-Peak",
+        winterRate: 0.35,
+        summerRate: 0.35
+    )
+    
+    static let offPeak = RateType(
+        name: "Off-Peak",
+        winterRate: 0.39,
+        summerRate: 0.36
+    )
+    
+    static let midPeak = RateType(
+        name: "Mid-Peak",
+        winterRate: 0.48,
+        summerRate: 0.48
+    )
+    
+    static let onPeak = RateType(
+        name: "On-Peak",
+        winterRate: 0.59,
+        summerRate: 0.59
+    )
+    
+    func rate(for date: Date = Date()) -> Double {
+        let calendar = Calendar.current
+        let month = calendar.component(.month, from: date)
+        let isWinter = month >= 10 || month <= 5
+        
+        return isWinter ? winterRate : summerRate
+    }
+    
+    var color: Color {
+        switch name {
+        case "Super Off-Peak": return .green
+        case "Off-Peak": return .blue
+        case "Mid-Peak": return .orange
+        case "On-Peak": return .red
+        default: return .gray
         }
     }
     
-    var color: String {
-        switch self {
-        case .superOffPeak: return "green"
-        case .offPeak: return "blue"
-        case .midPeak: return "orange"
-        case .onPeak: return "red"
-        }
-    }
-    
-    var formattedRate: String {
-        String(format: "%.2f¢", rate * 100)
+    func formattedRate(for date: Date = Date()) -> String {
+        String(format: "%.2f¢", rate(for: date) * 100)
     }
     
     var isPeakRate: Bool {
-        self == .midPeak || self == .onPeak
+        name == "Mid-Peak" || name == "On-Peak"
     }
 }
 
@@ -45,18 +69,11 @@ struct RatePeriod: Codable {
     }
     
     var formattedTimeRange: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "ha"
-        
-        let calendar = Calendar.current
-        let now = Date()
-        
-        guard let startDate = calendar.date(bySettingHour: startHour, minute: 0, second: 0, of: now),
-              let endDate = calendar.date(bySettingHour: endHour, minute: 0, second: 0, of: now) else {
-            return "Invalid time range"
-        }
-        
-        return "\(formatter.string(from: startDate)) - \(formatter.string(from: endDate))"
+        return "\(startHour):00 - \(endHour):00"
+    }
+    
+    func formattedRate(for date: Date = Date()) -> String {
+        rateType.formattedRate(for: date)
     }
 }
 

@@ -95,11 +95,11 @@ struct RatePeriodCard: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(period.rateType.rawValue)
+            Text(period.rateType.name)
                 .font(.subheadline)
-                .foregroundColor(Color(period.rateType.color))
+                .foregroundColor(period.rateType.color)
             
-            Text(period.rateType.formattedRate)
+            Text(period.formattedRate())
                 .font(.title3)
                 .bold()
             
