@@ -51,8 +51,10 @@ struct RatePeriod: Codable {
         let calendar = Calendar.current
         let now = Date()
         
-        let startDate = calendar.date(bySettingHour: startHour, minute: 0, second: 0, of: now)!
-        let endDate = calendar.date(bySettingHour: endHour, minute: 0, second: 0, of: now)!
+        guard let startDate = calendar.date(bySettingHour: startHour, minute: 0, second: 0, of: now),
+              let endDate = calendar.date(bySettingHour: endHour, minute: 0, second: 0, of: now) else {
+            return "Invalid time range"
+        }
         
         return "\(formatter.string(from: startDate)) - \(formatter.string(from: endDate))"
     }
@@ -95,7 +97,7 @@ struct EnergyData: Codable {
         let calendar = Calendar.current
         let isWeekend = calendar.isDateInWeekend(date)
         let month = calendar.component(.month, from: date)
-        let isWinter = (10...5).contains(month)
+        let isWinter = month >= 10 || month <= 5
         
         let rates: [RatePeriod]
         if isWinter {
@@ -112,7 +114,7 @@ struct EnergyData: Codable {
         let currentHour = calendar.component(.hour, from: date)
         let isWeekend = calendar.isDateInWeekend(date)
         let month = calendar.component(.month, from: date)
-        let isWinter = (month >= 10 || month <= 5)
+        let isWinter = month >= 10 || month <= 5
 
         let rates: [RatePeriod]
         if isWinter {
@@ -134,7 +136,7 @@ struct EnergyData: Codable {
         let calendar = Calendar.current
         let isWeekend = calendar.isDateInWeekend(date)
         let month = calendar.component(.month, from: date)
-        let isWinter = (month >= 10 || month <= 5)
+        let isWinter = month >= 10 || month <= 5
         
         let rates: [RatePeriod]
         if isWinter {

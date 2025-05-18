@@ -46,20 +46,6 @@ struct ContentView: View {
             }
             .tag(0)
             
-            // History Tab
-            NavigationView {
-                List {
-                    ForEach(RateHistory.generateHistory()) { history in
-                        RateHistoryRow(history: history)
-                    }
-                }
-                .navigationTitle("Rate History")
-            }
-            .tabItem {
-                Label("History", systemImage: "clock.fill")
-            }
-            .tag(1)
-            
             // Settings Tab
             NavigationView {
                 List {
@@ -83,7 +69,7 @@ struct ContentView: View {
             .tabItem {
                 Label("Settings", systemImage: "gear")
             }
-            .tag(2)
+            .tag(1)
         }
         .sheet(isPresented: $showingWidgetHelp) {
             WidgetHelpView()
@@ -126,35 +112,6 @@ struct RatePeriodCard: View {
         .background(Color(.systemBackground))
         .cornerRadius(12)
         .shadow(radius: 3)
-    }
-}
-
-struct RateHistoryRow: View {
-    let history: RateHistory
-    
-    var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 4) {
-                Text(history.formattedDate)
-                    .font(.subheadline)
-                
-                Text(history.formattedDuration)
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-            }
-            
-            Spacer()
-            
-            VStack(alignment: .trailing, spacing: 4) {
-                Text(history.rateType.rawValue)
-                    .font(.subheadline)
-                    .foregroundColor(Color(history.rateType.color))
-                
-                Text(history.rateType.formattedRate)
-                    .font(.headline)
-            }
-        }
-        .padding(.vertical, 4)
     }
 }
 
