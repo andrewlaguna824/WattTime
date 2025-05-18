@@ -6,7 +6,20 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		983876352DDA535E00132BE1 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 983876342DDA535E00132BE1 /* WidgetKit.framework */; };
+		983876372DDA535E00132BE1 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 983876362DDA535E00132BE1 /* SwiftUI.framework */; };
+		983876442DDA536000132BE1 /* WattTimeWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 983876322DDA535E00132BE1 /* WattTimeWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
+		983876422DDA536000132BE1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 98A86C772DDA4AA900866ECA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 983876312DDA535E00132BE1;
+			remoteInfo = WattTimeWidgetExtension;
+		};
 		98A86C8D2DDA4AAB00866ECA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 98A86C772DDA4AA900866ECA /* Project object */;
@@ -23,21 +36,80 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		983876492DDA536000132BE1 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				983876442DDA536000132BE1 /* WattTimeWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		983876322DDA535E00132BE1 /* WattTimeWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WattTimeWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		983876342DDA535E00132BE1 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		983876362DDA535E00132BE1 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		98A86C7F2DDA4AA900866ECA /* WattTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WattTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98A86C8C2DDA4AAB00866ECA /* WattTimeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WattTimeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		98A86C962DDA4AAB00866ECA /* WattTimeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WattTimeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		983876452DDA536000132BE1 /* Exceptions for "WattTimeWidget" folder in "WattTimeWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 983876312DDA535E00132BE1 /* WattTimeWidgetExtension */;
+		};
+		98C3C4CA2DDA5582005F1DA5 /* Exceptions for "Shared" folder in "WattTimeWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Models.swift,
+			);
+			target = 983876312DDA535E00132BE1 /* WattTimeWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		983876382DDA535E00132BE1 /* WattTimeWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				983876452DDA536000132BE1 /* Exceptions for "WattTimeWidget" folder in "WattTimeWidgetExtension" target */,
+			);
+			path = WattTimeWidget;
+			sourceTree = "<group>";
+		};
 		98A86C812DDA4AA900866ECA /* WattTime */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = WattTime;
 			sourceTree = "<group>";
 		};
+		98C3C4C62DDA54BD005F1DA5 /* Shared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				98C3C4CA2DDA5582005F1DA5 /* Exceptions for "Shared" folder in "WattTimeWidgetExtension" target */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		9838762F2DDA535E00132BE1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				983876372DDA535E00132BE1 /* SwiftUI.framework in Frameworks */,
+				983876352DDA535E00132BE1 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		98A86C7C2DDA4AA900866ECA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -62,10 +134,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		983876332DDA535E00132BE1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				983876342DDA535E00132BE1 /* WidgetKit.framework */,
+				983876362DDA535E00132BE1 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		98A86C762DDA4AA900866ECA = {
 			isa = PBXGroup;
 			children = (
+				98C3C4C62DDA54BD005F1DA5 /* Shared */,
 				98A86C812DDA4AA900866ECA /* WattTime */,
+				983876382DDA535E00132BE1 /* WattTimeWidget */,
+				983876332DDA535E00132BE1 /* Frameworks */,
 				98A86C802DDA4AA900866ECA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -76,6 +160,7 @@
 				98A86C7F2DDA4AA900866ECA /* WattTime.app */,
 				98A86C8C2DDA4AAB00866ECA /* WattTimeTests.xctest */,
 				98A86C962DDA4AAB00866ECA /* WattTimeUITests.xctest */,
+				983876322DDA535E00132BE1 /* WattTimeWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -83,6 +168,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		983876312DDA535E00132BE1 /* WattTimeWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 983876462DDA536000132BE1 /* Build configuration list for PBXNativeTarget "WattTimeWidgetExtension" */;
+			buildPhases = (
+				9838762E2DDA535E00132BE1 /* Sources */,
+				9838762F2DDA535E00132BE1 /* Frameworks */,
+				983876302DDA535E00132BE1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				983876382DDA535E00132BE1 /* WattTimeWidget */,
+			);
+			name = WattTimeWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = WattTimeWidgetExtension;
+			productReference = 983876322DDA535E00132BE1 /* WattTimeWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		98A86C7E2DDA4AA900866ECA /* WattTime */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 98A86CA02DDA4AAB00866ECA /* Build configuration list for PBXNativeTarget "WattTime" */;
@@ -90,13 +197,16 @@
 				98A86C7B2DDA4AA900866ECA /* Sources */,
 				98A86C7C2DDA4AA900866ECA /* Frameworks */,
 				98A86C7D2DDA4AA900866ECA /* Resources */,
+				983876492DDA536000132BE1 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				983876432DDA536000132BE1 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				98A86C812DDA4AA900866ECA /* WattTime */,
+				98C3C4C62DDA54BD005F1DA5 /* Shared */,
 			);
 			name = WattTime;
 			packageProductDependencies = (
@@ -155,6 +265,9 @@
 				LastSwiftUpdateCheck = 1630;
 				LastUpgradeCheck = 1630;
 				TargetAttributes = {
+					983876312DDA535E00132BE1 = {
+						CreatedOnToolsVersion = 16.3;
+					};
 					98A86C7E2DDA4AA900866ECA = {
 						CreatedOnToolsVersion = 16.3;
 					};
@@ -185,11 +298,19 @@
 				98A86C7E2DDA4AA900866ECA /* WattTime */,
 				98A86C8B2DDA4AAB00866ECA /* WattTimeTests */,
 				98A86C952DDA4AAB00866ECA /* WattTimeUITests */,
+				983876312DDA535E00132BE1 /* WattTimeWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		983876302DDA535E00132BE1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		98A86C7D2DDA4AA900866ECA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -214,6 +335,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		9838762E2DDA535E00132BE1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		98A86C7B2DDA4AA900866ECA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -238,6 +366,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		983876432DDA536000132BE1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 983876312DDA535E00132BE1 /* WattTimeWidgetExtension */;
+			targetProxy = 983876422DDA536000132BE1 /* PBXContainerItemProxy */;
+		};
 		98A86C8E2DDA4AAB00866ECA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 98A86C7E2DDA4AA900866ECA /* WattTime */;
@@ -251,6 +384,60 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		983876472DDA536000132BE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UWU4N599KR;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WattTimeWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WattTimeWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andrewpalmer.WattTime.WattTimeWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		983876482DDA536000132BE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UWU4N599KR;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WattTimeWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WattTimeWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andrewpalmer.WattTime.WattTimeWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		98A86C9E2DDA4AAB00866ECA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -505,6 +692,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		983876462DDA536000132BE1 /* Build configuration list for PBXNativeTarget "WattTimeWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				983876472DDA536000132BE1 /* Debug */,
+				983876482DDA536000132BE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		98A86C7A2DDA4AA900866ECA /* Build configuration list for PBXProject "WattTime" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

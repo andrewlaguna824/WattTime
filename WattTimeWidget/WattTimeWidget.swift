@@ -1,49 +1,58 @@
+//
+//  WattTimeWidget.swift
+//  WattTimeWidget
+//
+//  Created by Andrew Palmer on 5/18/25.
+//
+
 import WidgetKit
 import SwiftUI
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date())
+        SimpleEntry(date: Date(), emoji: "😀")
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date())
+        let entry = SimpleEntry(date: Date(), emoji: "😀")
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+        var entries: [SimpleEntry] = []
+
+        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
-        let nextChange = EnergyData.nextRateChange(from: currentDate)
-        
-        // Create entries for current period and next period
-        let entries = [
-            SimpleEntry(date: currentDate),
-            SimpleEntry(date: nextChange)
-        ]
-        
+        for hourOffset in 0 ..< 5 {
+            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
+            let entry = SimpleEntry(date: entryDate, emoji: "😀")
+            entries.append(entry)
+        }
+
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
     }
+
+//    func relevances() async -> WidgetRelevances<Void> {
+//        // Generate a list containing the contexts this widget is relevant in.
+//    }
 }
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
+    let emoji: String
 }
 
 struct WattTimeWidgetEntryView : View {
     var entry: Provider.Entry
-    @Environment(\.widgetFamily) var family
-    
+
     var body: some View {
-        let rateInfo = EnergyData.currentRateInfo(for: entry.date)
-        
-        switch family {
-        case .systemSmall:
-            RateInfoView(rateInfo: rateInfo, style: .compact)
-        case .systemMedium:
-            RateInfoView(rateInfo: rateInfo, style: .detailed)
-        default:
-            RateInfoView(rateInfo: rateInfo, style: .compact)
+        VStack {
+            Text("Time:")
+            Text(entry.date, style: .time)
+
+            Text("Emoji:")
+            Text(entry.emoji)
         }
     }
 }
@@ -53,22 +62,23 @@ struct WattTimeWidget: Widget {
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            WattTimeWidgetEntryView(entry: entry)
+            if #available(iOS 17.0, *) {
+                WattTimeWidgetEntryView(entry: entry)
+                    .containerBackground(.fill.tertiary, for: .widget)
+            } else {
+                WattTimeWidgetEntryView(entry: entry)
+                    .padding()
+                    .background()
+            }
         }
-        .configurationDisplayName("WattTime Widget")
-        .description("Display current energy rates and next rate change.")
-        .supportedFamilies([.systemSmall, .systemMedium])
+        .configurationDisplayName("My Widget")
+        .description("This is an example widget.")
     }
 }
 
 #Preview(as: .systemSmall) {
     WattTimeWidget()
 } timeline: {
-    SimpleEntry(date: .now)
+    SimpleEntry(date: .now, emoji: "😀")
+    SimpleEntry(date: .now, emoji: "🤩")
 }
-
-#Preview(as: .systemMedium) {
-    WattTimeWidget()
-} timeline: {
-    SimpleEntry(date: .now)
-} 

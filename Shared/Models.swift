@@ -20,7 +20,7 @@ struct RateType: Codable {
     
     static let midPeak = RateType(
         name: "Mid-Peak",
-        winterRate: 0.48,
+        winterRate: 0.52,
         summerRate: 0.48
     )
     
