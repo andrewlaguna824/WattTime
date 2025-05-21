@@ -4,6 +4,7 @@ struct ContentView: View {
     @State private var selectedTab = 0
     @State private var showingWidgetHelp = false
     @State private var isRefreshing = false
+    @State private var currentRateInfo = EnergyData.currentRateInfo()
     
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -12,7 +13,7 @@ struct ContentView: View {
                 ScrollView {
                     VStack(spacing: 20) {
                         // Current Rate Card
-                        RateInfoView(rateInfo: EnergyData.currentRateInfo(), style: .card)
+                        RateInfoView(rateInfo: currentRateInfo, style: .card)
                             .padding(.horizontal)
                         
                         // Rate Schedule
@@ -96,8 +97,8 @@ struct ContentView: View {
     private func refreshData() async {
         // Add a small delay to show the refresh animation
         try? await Task.sleep(nanoseconds: 1_000_000_000)
-        // Force a view update by toggling the refreshing state
-        isRefreshing.toggle()
+        // Update the current rate info
+        currentRateInfo = EnergyData.currentRateInfo()
     }
 }
 
