@@ -3,6 +3,7 @@ import SwiftUI
 struct ContentView: View {
     @State private var selectedTab = 0
     @State private var showingWidgetHelp = false
+    @State private var isRefreshing = false
     
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -31,6 +32,9 @@ struct ContentView: View {
                         }
                     }
                     .padding(.vertical)
+                }
+                .refreshable {
+                    await refreshData()
                 }
                 .navigationTitle("WattTime")
                 .toolbar {
@@ -87,6 +91,13 @@ struct ContentView: View {
         } else {
             return isWeekend ? EnergyData.summerWeekendRates : EnergyData.summerWeekdayRates
         }
+    }
+    
+    private func refreshData() async {
+        // Add a small delay to show the refresh animation
+        try? await Task.sleep(nanoseconds: 1_000_000_000)
+        // Force a view update by toggling the refreshing state
+        isRefreshing.toggle()
     }
 }
 
