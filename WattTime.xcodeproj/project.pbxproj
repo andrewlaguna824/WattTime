@@ -10,6 +10,8 @@
 		983876352DDA535E00132BE1 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 983876342DDA535E00132BE1 /* WidgetKit.framework */; };
 		983876372DDA535E00132BE1 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 983876362DDA535E00132BE1 /* SwiftUI.framework */; };
 		983876442DDA536000132BE1 /* WattTimeWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 983876322DDA535E00132BE1 /* WattTimeWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		98C3C4C02DDA54A9005F1DA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98C3C4BA2DDA54A9005F1DA5 /* Assets.xcassets */; };
+		98C3C4CE2DDED2BC005F1DA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98C3C4BA2DDA54A9005F1DA5 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,7 @@
 		98A86C7F2DDA4AA900866ECA /* WattTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WattTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98A86C8C2DDA4AAB00866ECA /* WattTimeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WattTimeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		98A86C962DDA4AAB00866ECA /* WattTimeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WattTimeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		98C3C4BA2DDA54A9005F1DA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -146,6 +149,7 @@
 		98A86C762DDA4AA900866ECA = {
 			isa = PBXGroup;
 			children = (
+				98C3C4BA2DDA54A9005F1DA5 /* Assets.xcassets */,
 				98C3C4C62DDA54BD005F1DA5 /* Shared */,
 				98A86C812DDA4AA900866ECA /* WattTime */,
 				983876382DDA535E00132BE1 /* WattTimeWidget */,
@@ -308,6 +312,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98C3C4C02DDA54A9005F1DA5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +320,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98C3C4CE2DDED2BC005F1DA5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
